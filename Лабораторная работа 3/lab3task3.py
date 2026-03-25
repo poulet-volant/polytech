@@ -1,6 +1,7 @@
+alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+
 def count_letters(text) :
     text = text.lower()
-    alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
     counter = {}
     for i in range(len(alphabet)) :
         counter.update({alphabet[i]: text.count(alphabet[i])})
@@ -8,7 +9,6 @@ def count_letters(text) :
 
 
 def calculate_frequency(dictionary) :
-    alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
     total = sum(dictionary.values())
     frequency = {}
     for i in range(len(alphabet)) :
@@ -55,6 +55,12 @@ main_str = """
 
 result = calculate_frequency(count_letters(main_str))
 
-for element in result :
-    print(f'{element}: {result.get(element):.2f}')
+#for element in result :
+#    print(f'{element}: {result.get(element):.2f}') # в задании не сказано по какому критерию сортировать выходные
+
+main_str_lowercase = main_str.lower()
+for i in range(len(main_str_lowercase)) :
+    if main_str_lowercase[i] in result :
+        print(f'{main_str_lowercase[i]}: {result.get(main_str_lowercase[i]):.2f}')
+        main_str_lowercase = main_str_lowercase.replace(main_str_lowercase[i], ' ') # замечательный и неэффективный костыль, но зато аутпут теперь в ожидаемом порядке
 
